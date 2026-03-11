@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Small extras to match the mock look */
+@layer base {
+  :root {
+    --app-bg-1: #f3f6ea;
+    --app-bg-2: #f9efe6;
+    --card-a: #64f1ea;
+    --card-b: #f5c7f3;
+  }
+
+  body {
+    font-family: "Plus Jakarta Sans", "Poppins", "Segoe UI", sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/50;
+  }
+
+  .card-glow {
+    @apply rounded-[22px] shadow-soft;
+    background: linear-gradient(135deg, var(--card-a), #a8e9ff 30%, var(--card-b) 95%);
+  }
+}
+
+@layer utilities {
+  .marquee {
+    @apply whitespace-nowrap;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-track {
+    @apply flex gap-12;
+    width: max-content;
+  }
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minkes Radio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body class="min-h-screen bg-[radial-gradient(70%_80%_at_20%_10%,var(--app-bg-1),transparent_55%),radial-gradient(80%_90%_at_90%_20%,var(--app-bg-2),transparent_60%),linear-gradient(180deg,#f7f7ef,#f9f6f0)] text-slate-900">
+    <div class="w-full overflow-hidden bg-gradient-to-r from-emerald-300 via-sky-300 to-purple-300 py-2 text-[13px] font-semibold text-slate-700">
+      <div class="marquee-track marquee">
+        <span>Tips Sehat: Jangan lupa minum air putih minimal 8 gelas sehari untuk menjaga fokus saat bekerja.</span>
+        <span>Info Cuaca: Kota Semarang dan sekitarnya diprediksi cerah berawan sore ini.</span>
+        <span>Tips Sehat: Jangan lupa minum air putih minimal 8 gelas sehari untuk menjaga fokus saat bekerja.</span>
+        <span>Info Cuaca: Kota Semarang dan sekitarnya diprediksi cerah berawan sore ini.</span>
+      </div>
+    </div>
+
+    <main class="mx-auto max-w-6xl px-6 pb-10 pt-10">
+      <header class="flex flex-col items-center justify-center gap-4 text-center">
+        <div class="flex items-center justify-center gap-4">
+          <svg width="70" height="70" viewBox="0 0 80 80" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#22d3ee" />
+                <stop offset="1" stop-color="#f472b6" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M40 8c14 0 26 12 26 26 0 18-26 38-26 38S14 52 14 34C14 20 26 8 40 8z"
+              fill="url(#g1)"
+            />
+            <circle cx="40" cy="36" r="14" fill="white" opacity="0.85" />
+            <path d="M28 36h24" stroke="#0ea5a5" stroke-width="4" stroke-linecap="round" />
+            <path d="M34 30c2 4 4 6 6 10" stroke="#0ea5a5" stroke-width="4" stroke-linecap="round" />
+            <path d="M40 24l4 8h8" stroke="#0ea5a5" stroke-width="4" stroke-linecap="round" />
+            <path d="M40 6c8 2 14 8 16 16" stroke="#f472b6" stroke-width="4" stroke-linecap="round" fill="none" />
+            <path d="M40 0c12 2 22 12 24 24" stroke="#f472b6" stroke-width="4" stroke-linecap="round" fill="none" />
+          </svg>
+          <div class="text-left">
+            <div class="text-4xl font-extrabold tracking-tight text-pink-500" style="font-family: Poppins, sans-serif">
+              MINKES
+            </div>
+            <div class="-mt-1 text-2xl font-extrabold tracking-[0.2em] text-teal-500">RADIO</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="space-y-8">
+          <div class="card-glow p-5">
+            <div class="rounded-[18px] bg-white/80 p-4 shadow-inner">
+              <div class="flex items-center gap-4">
+                <button
+                  id="btnPlay"
+                  class="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-soft ring-1 ring-white/60 hover:bg-white"
+                  type="button"
+                  aria-label="play pause"
+                  title="Play/Pause"
+                >
+                  <svg id="iconPlay" width="18" height="18" viewBox="0 0 24 24" fill="#22c55e">
+                    <path d="M8 5l11 7-11 7V5z"></path>
+                  </svg>
+                </button>
+
+                <div class="flex-1">
+                  <div class="h-2 w-full rounded-full bg-slate-200">
+                    <div id="seekBar" class="h-2 w-2/3 rounded-full bg-pink-500"></div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2">
+                  <div class="h-2 w-16 rounded-full bg-slate-300"></div>
+                  <button
+                    id="btnMute"
+                    class="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow"
+                    type="button"
+                    aria-label="mute"
+                    title="Mute"
+                  >
+                    <svg id="iconVolume" width="14" height="14" viewBox="0 0 24 24" fill="#334155">
+                      <path
+                        d="M4 9h4l5-4v14l-5-4H4V9zm12.5 3a4.5 4.5 0 0 0-2-3.7v7.4a4.5 4.5 0 0 0 2-3.7z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-5 grid grid-cols-2 gap-6 text-sm text-slate-700">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between border-b border-slate-300 pb-1 text-xs uppercase tracking-wide">
+                    <span>Jumlah Pendengar</span>
+                    <span id="listenerCount" class="font-semibold">60</span>
+                  </div>
+                  <div class="flex items-center justify-between border-b border-slate-300 pb-1 text-xs uppercase tracking-wide">
+                    <span>Puncak Pendengar</span>
+                    <span id="peakCount" class="font-semibold">100</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-center">
+                  <div class="flex h-10 items-end gap-1 rounded-full bg-white/70 px-3 py-2 shadow-inner ring-1 ring-white/60">
+                    <div class="h-6 w-2 rounded-full bg-pink-400/80 animate-bar"></div>
+                    <div class="h-8 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.1s"></div>
+                    <div class="h-5 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.2s"></div>
+                    <div class="h-9 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.3s"></div>
+                    <div class="h-6 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.4s"></div>
+                    <div class="h-10 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.5s"></div>
+                    <div class="h-7 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.6s"></div>
+                    <div class="h-9 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.7s"></div>
+                    <div class="h-6 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.8s"></div>
+                    <div class="h-8 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 0.9s"></div>
+                    <div class="h-6 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 1s"></div>
+                    <div class="h-9 w-2 rounded-full bg-pink-400/80 animate-bar" style="animation-delay: 1.1s"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 text-xs text-slate-600">
+                <span id="hint">Setel URL stream di halaman Admin untuk mulai memutar.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="card-glow p-5">
+              <div class="text-center text-lg font-extrabold text-white">TITIP SALAM</div>
+              <div class="mt-4 space-y-3">
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Nama" />
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Asal" />
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Titip Salam" />
+              </div>
+              <button class="mt-5 w-full rounded-full bg-white/50 px-4 py-2 text-sm font-semibold text-slate-700 shadow">
+                Kirim
+              </button>
+            </div>
+
+            <div class="card-glow p-5">
+              <div class="text-center text-lg font-extrabold text-white">REQUEST LAGU</div>
+              <div class="mt-4 space-y-3">
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Nama" />
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Penyanyi" />
+                <input class="w-full rounded-lg bg-white px-3 py-2 text-sm" placeholder="Judul Lagu" />
+              </div>
+              <button class="mt-5 w-full rounded-full bg-white/50 px-4 py-2 text-sm font-semibold text-slate-700 shadow">
+                Kirim
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-glow p-5">
+          <div class="rounded-[18px] bg-white/80 p-3">
+            <img
+              id="poster"
+              alt="Poster"
+              class="h-[520px] w-full rounded-[14px] object-cover shadow"
+              src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27960%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20x2%3D%271%27%3E%3Cstop%20stop-color%3D%27%238be4df%27%20offset%3D%270%27%2F%3E%3Cstop%20stop-color%3D%27%23f6b2e6%27%20offset%3D%271%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20fill%3D%27url(%23g)%27%20width%3D%27100%25%27%20height%3D%27100%25%27%2F%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2750%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-family%3D%27Arial%27%20font-size%3D%2748%27%20fill%3D%27%230f172a%27%20opacity%3D%270.55%27%3EPOSTER%3C%2Ftext%3E%3C%2Fsvg%3E"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="w-full overflow-hidden bg-gradient-to-r from-cyan-200 via-sky-200 to-purple-200 py-2 text-[13px] font-semibold text-slate-700">
+      <div class="marquee-track marquee">
+        <span>Anda sedang mendengarkan Minkes Radio - Musik Kesehatan untuk Jiwa.</span>
+        <span>Ingin dengar lagu favoritmu? Tulis di kolom Request Lagu sekarang juga!</span>
+        <span>Kirim salam untuk teman atau keluarga lewat kolom Titip Salam.</span>
+        <span>Anda sedang mendengarkan Minkes Radio - Musik Kesehatan untuk Jiwa.</span>
+        <span>Ingin dengar lagu favoritmu? Tulis di kolom Request Lagu sekarang juga!</span>
+        <span>Kirim salam untuk teman atau keluarga lewat kolom Titip Salam.</span>
+      </div>
+    </div>
+
+    <p class="py-4 text-center text-xs text-slate-600">
+      powered by Dinas Kesehatan Kota Semarang
+    </p>
+
+    <audio id="audio" preload="none" crossorigin="anonymous"></audio>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
+
