@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        pinkSoft: "#ec4899",
+        turquoise: "#14b8a6",
         blush: {
           50: "#fff5f7",
           100: "#ffe6ee",

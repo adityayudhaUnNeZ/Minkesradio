@@ -9,7 +9,8 @@
   const iconVolume = $("iconVolume");
   const seekBar = $("seekBar");
   const listenerCount = $("listenerCount");
-  const peakCount = $("peakCount");
+  const topicText = $("topicText");
+  const btnShare = $("btnShare");
   const hint = $("hint");
 
   let state = null;
@@ -62,17 +63,12 @@
     renderState();
   }
 
-  function numberFromText(text, fallback) {
-    const match = String(text || "").match(/(\d+)/);
-    return match ? match[1] : fallback;
-  }
-
   function renderState() {
     const stationName = state?.stationName || "Minkes Radio";
     document.title = stationName;
 
-    if (listenerCount) listenerCount.textContent = numberFromText(state?.listenersText, "60");
-    if (peakCount) peakCount.textContent = numberFromText(state?.topicText, "100");
+    if (listenerCount) listenerCount.textContent = state?.listenersText || "60 Listener";
+    if (topicText) topicText.textContent = state?.topicText || "Topics: UHC";
 
     const posterUrl = state?.posterUrl;
     if (posterUrl) poster.src = posterUrl;
@@ -112,6 +108,27 @@
     audio.muted = !audio.muted;
     setMuteUi(audio.muted);
   });
+
+  if (btnShare) {
+    btnShare.addEventListener("click", async () => {
+      const payload = {
+        title: document.title,
+        text: state?.programTitle ? `${state.programTitle} - ${state.stationName || "Minkes Radio"}` : document.title,
+        url: window.location.href
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(payload);
+        } else {
+          await navigator.clipboard.writeText(payload.url);
+          setHint("Link disalin ke clipboard.");
+          window.setTimeout(() => renderState(), 2000);
+        }
+      } catch {
+        // ignore
+      }
+    });
+  }
 
   audio.addEventListener("play", () => {
     setPlayUi(true);

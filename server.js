@@ -29,8 +29,8 @@ async function ensureStateFile() {
       links: {
         youtube: "",
         instagram: "",
-        website: ""
-      }
+        website: "",
+      },
     };
     await atomicWriteJson(statePath, initialState);
   }
@@ -83,8 +83,8 @@ function normalizeState(input) {
     links: {
       youtube: safeUrl(links?.youtube),
       instagram: safeUrl(links?.instagram),
-      website: safeUrl(links?.website)
-    }
+      website: safeUrl(links?.website),
+    },
   };
 }
 
@@ -114,4 +114,3 @@ app.listen(PORT, async () => {
   // eslint-disable-next-line no-console
   console.log(`Minkes Radio running on http://localhost:${PORT}`);
 });
-
