@@ -11,6 +11,10 @@
   const listenerCount = $("listenerCount");
   const topicText = $("topicText");
   const btnShare = $("btnShare");
+  const tabSalam = $("tabSalam");
+  const tabRequest = $("tabRequest");
+  const formSalam = $("formSalam");
+  const formRequest = $("formRequest");
   const hint = $("hint");
 
   let state = null;
@@ -148,7 +152,26 @@
     setHint("Tidak bisa memuat stream. Cek URL dan koneksi.");
   });
 
+  function setActiveTab(tab) {
+    const isSalam = tab === "salam";
+    if (formSalam) formSalam.classList.toggle("hidden", !isSalam);
+    if (formRequest) formRequest.classList.toggle("hidden", isSalam);
+
+    if (tabSalam) {
+      tabSalam.classList.toggle("tab-pill-active", isSalam);
+      tabSalam.setAttribute("aria-pressed", isSalam ? "true" : "false");
+    }
+    if (tabRequest) {
+      tabRequest.classList.toggle("tab-pill-active", !isSalam);
+      tabRequest.setAttribute("aria-pressed", !isSalam ? "true" : "false");
+    }
+  }
+
+  if (tabSalam) tabSalam.addEventListener("click", () => setActiveTab("salam"));
+  if (tabRequest) tabRequest.addEventListener("click", () => setActiveTab("request"));
+
   setPlayUi(false);
   setMuteUi(false);
+  setActiveTab("salam");
   loadState().catch(() => setHint("Gagal memuat data. Pastikan server berjalan."));
 })();
