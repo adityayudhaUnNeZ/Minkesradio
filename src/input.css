@@ -4,6 +4,24 @@
 
 /* Small extras to match the mock look */
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  img, svg, video, canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  button, input, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+
   :root {
     /* Theme tokens: edit colors/fonts here */
     --font-body: "Plus Jakarta Sans", "Poppins", "Segoe UI", sans-serif;

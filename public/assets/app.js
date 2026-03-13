@@ -17,7 +17,22 @@
   const formRequest = $("formRequest");
   const hint = $("hint");
 
-  let state = null;
+  const state = {
+    stationName: "Minkes Radio",
+    city: "Semarang",
+    programTitle: "On Air",
+    hosts: ["Isul", "Laily"],
+    scheduleText: "Rabu, 4 Februari 2026 10.00-11.00 WIB",
+    listenersText: "60 Listener",
+    topicText: "Topics: UHC",
+    streamUrl: "",
+    posterUrl: "",
+    links: {
+      youtube: "",
+      instagram: "",
+      website: ""
+    }
+  };
   let isPlaying = false;
   let fakeProgressTimer = null;
 
@@ -61,12 +76,6 @@
     if (seekBar) seekBar.style.width = "40%";
   }
 
-  async function loadState() {
-    const res = await fetch("/api/state", { cache: "no-store" });
-    state = await res.json();
-    renderState();
-  }
-
   function renderState() {
     const stationName = state?.stationName || "Minkes Radio";
     document.title = stationName;
@@ -78,12 +87,12 @@
     if (posterUrl) poster.src = posterUrl;
 
     const hasStream = Boolean(state?.streamUrl);
-    setHint(hasStream ? "Tap play untuk mulai mendengar." : "Setel URL stream di halaman Admin untuk mulai memutar.");
+    setHint(hasStream ? "Tap play untuk mulai mendengar." : "Setel URL stream untuk mulai memutar.");
   }
 
   async function togglePlay() {
     if (!state?.streamUrl) {
-      setHint("Stream URL belum diatur. Buka Admin untuk mengisi.");
+      setHint("Stream URL belum diatur. Silakan isi URL stream.");
       return;
     }
 
@@ -173,5 +182,5 @@
   setPlayUi(false);
   setMuteUi(false);
   setActiveTab("salam");
-  loadState().catch(() => setHint("Gagal memuat data. Pastikan server berjalan."));
+  renderState();
 })();

@@ -1,0 +1,85 @@
+.topbar {
+  padding: 18px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: var(--card-soft);
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-text {
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--brand-pink);
+}
+
+.brand-subtitle {
+  margin-top: -2px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: var(--brand-teal);
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav a.nav-active {
+  color: #0d9488;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+  text-decoration: none;
+}
+
+.social-btn.youtube {
+  background: #ef4444;
+}
+
+.social-btn.instagram {
+  background: linear-gradient(45deg, #facc15, #ec4899 60%, #a855f7);
+}
+
+.social-btn.twitter {
+  background: #1e293b;
+}
