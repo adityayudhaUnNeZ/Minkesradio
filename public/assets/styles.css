@@ -1,6 +1,6 @@
-@import url("/assets/styles/base.css");
-@import url("/assets/styles/layout.css");
-@import url("/assets/styles/header.css");
-@import url("/assets/styles/hero.css");
-@import url("/assets/styles/form.css");
-@import url("/assets/styles/responsive.css");
+@import url("styles/base.css");
+@import url("styles/layout.css");
+@import url("styles/header.css");
+@import url("styles/hero.css");
+@import url("styles/form.css");
+@import url("styles/responsive.css");

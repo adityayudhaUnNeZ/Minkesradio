@@ -13,8 +13,10 @@
   const btnShare = $("btnShare");
   const tabSalam = $("tabSalam");
   const tabRequest = $("tabRequest");
-  const formSalam = $("formSalam");
-  const formRequest = $("formRequest");
+  const formMain = $("formMain");
+  const fieldName = $("fieldName");
+  const fieldSecond = $("fieldSecond");
+  const fieldMessage = $("fieldMessage");
   const hint = $("hint");
 
   const state = {
@@ -163,8 +165,7 @@
 
   function setActiveTab(tab) {
     const isSalam = tab === "salam";
-    if (formSalam) formSalam.classList.toggle("hidden", !isSalam);
-    if (formRequest) formRequest.classList.toggle("hidden", isSalam);
+    if (formMain) formMain.classList.remove("hidden");
 
     if (tabSalam) {
       tabSalam.classList.toggle("tab-pill-active", isSalam);
@@ -173,6 +174,16 @@
     if (tabRequest) {
       tabRequest.classList.toggle("tab-pill-active", !isSalam);
       tabRequest.setAttribute("aria-pressed", !isSalam ? "true" : "false");
+    }
+
+    if (fieldSecond) {
+      fieldSecond.placeholder = isSalam ? "Asal" : "Penyanyi";
+    }
+    if (fieldMessage) {
+      fieldMessage.placeholder = isSalam ? "Titip Salam" : "Judul Lagu";
+    }
+    if (fieldName) {
+      fieldName.placeholder = "Nama";
     }
   }
 

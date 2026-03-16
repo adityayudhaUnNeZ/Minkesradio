@@ -10,101 +10,30 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="stylesheet" href="assets/styles/base.css" />
+    <link rel="stylesheet" href="assets/styles/layout.css" />
+    <link rel="stylesheet" href="assets/styles/hero.css" />
+    <link rel="stylesheet" href="assets/styles/form.css" />
+    <link rel="stylesheet" href="assets/styles/responsive.css" />
   </head>
   <body class="page">
     <main class="container">
       <header class="topbar card">
-        <div class="topbar-row">
-          <div class="brand">
-            <svg width="56" height="56" viewBox="0 0 80 80" aria-hidden="true">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1">
-                  <stop offset="0" stop-color="#22d3ee" />
-                  <stop offset="1" stop-color="#f472b6" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M40 8c14 0 26 12 26 26 0 18-26 38-26 38S14 52 14 34C14 20 26 8 40 8z"
-                fill="url(#g1)"
-              />
-              <circle cx="40" cy="36" r="14" fill="white" opacity="0.85" />
-              <path
-                d="M28 36h24"
-                stroke="#0ea5a5"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M34 30c2 4 4 6 6 10"
-                stroke="#0ea5a5"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M40 24l4 8h8"
-                stroke="#0ea5a5"
-                stroke-width="4"
-                stroke-linecap="round"
-              />
-              <path
-                d="M40 6c8 2 14 8 16 16"
-                stroke="#f472b6"
-                stroke-width="4"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </svg>
-            <div class="brand-text">
-              <div class="brand-title">MINKES</div>
-              <div class="brand-subtitle">RADIO</div>
-            </div>
-          </div>
-
-          <nav class="nav">
-            <a class="nav-active" href="#">HOME</a>
-            <a href="#">PROGRAM</a>
-            <a href="#">CONTACT</a>
-          </nav>
-
-          <div class="socials">
-            <a class="social-btn youtube" href="#" aria-label="YouTube">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M23 7.5a4 4 0 0 0-2.8-2.8C18.6 4.3 12 4.3 12 4.3s-6.6 0-8.2.4A4 4 0 0 0 1 7.5 41.5 41.5 0 0 0 .6 12a41.5 41.5 0 0 0 .4 4.5 4 4 0 0 0 2.8 2.8c1.6.4 8.2.4 8.2.4s6.6 0 8.2-.4a4 4 0 0 0 2.8-2.8A41.5 41.5 0 0 0 23.4 12 41.5 41.5 0 0 0 23 7.5zM9.8 15.3V8.7l6 3.3-6 3.3z"
-                ></path>
-              </svg>
-            </a>
-            <a class="social-btn instagram" href="#" aria-label="Instagram">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm6.5-.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"
-                ></path>
-              </svg>
-            </a>
-            <a class="social-btn twitter" href="#" aria-label="Twitter">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M21.6 6.1c-.8.4-1.6.6-2.5.8a4.3 4.3 0 0 0 1.9-2.4 8.4 8.4 0 0 1-2.7 1A4.2 4.2 0 0 0 11 9.3a12 12 0 0 1-8.7-4.4 4.2 4.2 0 0 0 1.3 5.6 4 4 0 0 1-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1 4.3 4.3 0 0 1-1.9.1 4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 18.6a12 12 0 0 0 6.5 1.9c7.8 0 12.1-6.4 12.1-12 0-.2 0-.4 0-.6a8.5 8.5 0 0 0 2-2.2z"
-                ></path>
-              </svg>
-            </a>
-          </div>
+        <img
+          src="assets/images/logo-minkes.png"
+          alt="Logo Minkes Radio"
+          class="brand-logo-only"
+        />
+        <div class="topbar-socials">
+          <a class="social-icon" href="#" aria-label="Instagram">
+            <img src="assets/images/icon-instagram.png" alt="Instagram" />
+          </a>
+          <a class="social-icon" href="#" aria-label="TikTok">
+            <img src="assets/images/icon-tiktok.png" alt="TikTok" />
+          </a>
+          <a class="social-icon" href="#" aria-label="YouTube">
+            <img src="assets/images/icon-youtube.png" alt="YouTube" />
+          </a>
         </div>
       </header>
 
@@ -115,7 +44,7 @@
               id="poster"
               alt="Poster"
               class="poster"
-              src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27720%27%20height%3D%27960%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20x2%3D%271%27%3E%3Cstop%20stop-color%3D%27%238be4df%27%20offset%3D%270%27%2F%3E%3Cstop%20stop-color%3D%27%23f6b2e6%27%20offset%3D%271%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20fill%3D%27url(%23g)%27%20width%3D%27100%25%27%20height%3D%27100%25%27%2F%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2750%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-family%3D%27Arial%27%20font-size%3D%2748%27%20fill%3D%27%230f172a%27%20opacity%3D%270.55%27%3EPOSTER%3C%2Ftext%3E%3C%2Fsvg%3E"
+              src="assets/images/poster.png"
             />
           </div>
 
@@ -220,17 +149,10 @@
                   Request Lagu
                 </button>
               </div>
-              <form id="formSalam" class="form-stack hidden">
-                <input class="form-input" placeholder="Nama" />
-                <input class="form-input" placeholder="Asal" />
-                <input class="form-input" placeholder="Titip Salam" />
-                <button class="btn-primary">Kirim</button>
-              </form>
-
-              <form id="formRequest" class="form-stack hidden">
-                <input class="form-input" placeholder="Nama" />
-                <input class="form-input" placeholder="Penyanyi" />
-                <input class="form-input" placeholder="Judul Lagu" />
+              <form id="formMain" class="form-stack">
+                <input id="fieldName" class="form-input" placeholder="Nama" />
+                <input id="fieldSecond" class="form-input" placeholder="Asal" />
+                <input id="fieldMessage" class="form-input" placeholder="Titip Salam" />
                 <button class="btn-primary">Kirim</button>
               </form>
             </div>
@@ -242,6 +164,6 @@
     </main>
 
     <audio id="audio" preload="none" crossorigin="anonymous"></audio>
-    <script src="/assets/app.js"></script>
+    <script src="assets/app.js"></script>
   </body>
 </html>
