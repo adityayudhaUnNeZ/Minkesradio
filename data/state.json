@@ -9,11 +9,11 @@
   "scheduleText": "Rabu, 4 Februari 2026 10.00-11.00 WIB",
   "listenersText": "60 Listener",
   "topicText": "Topics: UHC",
-  "streamUrl": "",
-  "posterUrl": "",
+  "streamUrl": "http://172.17.10.92:8000/radio",
+  "posterUrl": "assets/images/poster.jpeg",
   "links": {
-    "youtube": "",
-    "instagram": "",
-    "website": ""
+    "youtube": "https://www.youtube.com/@dinkessemarangkota",
+    "instagram": "https://www.instagram.com/dkksemarang/",
+    "tiktok": "https://www.tiktok.com/@dkksemarang"
   }
 }

@@ -66,3 +66,24 @@
   height: 18px;
   object-fit: contain;
 }
+
+.icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.icon-img-lg {
+  width: 22px;
+  height: 22px;
+}
+
+.icon-symbol {
+  font-family: "Material Symbols Rounded";
+  font-size: 18px;
+  line-height: 1;
+}
+
+.icon-symbol-lg {
+  font-size: 40px;
+}

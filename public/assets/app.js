@@ -9,7 +9,8 @@
   const iconVolume = $("iconVolume");
   const seekBar = $("seekBar");
   const listenerCount = $("listenerCount");
-  const topicText = $("topicText");
+  const listenerUpdated = $("listenerUpdated");
+  const liveLabel = $("liveLabel");
   const btnShare = $("btnShare");
   const tabSalam = $("tabSalam");
   const tabRequest = $("tabRequest");
@@ -27,16 +28,18 @@
     scheduleText: "Rabu, 4 Februari 2026 10.00-11.00 WIB",
     listenersText: "60 Listener",
     topicText: "Topics: UHC",
-    streamUrl: "",
-    posterUrl: "",
+    streamUrl: "http://172.17.10.92:8000/radio",
+    posterUrl: "assets/images/poster.jpeg",
     links: {
-      youtube: "",
-      instagram: "",
-      website: ""
-    }
+      youtube: "https://www.youtube.com/@dinkessemarangkota",
+      instagram: "https://www.instagram.com/dkksemarang/",
+      tiktok: "https://www.tiktok.com/@dkksemarang",
+    },
   };
   let isPlaying = false;
   let fakeProgressTimer = null;
+  let liveSource = null;
+  let livePollTimer = null;
 
   function setHint(text) {
     if (!hint) return;
@@ -46,18 +49,17 @@
   function setPlayUi(playing) {
     isPlaying = playing;
     if (iconPlay) {
-      iconPlay.innerHTML = playing
-        ? '<rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect>'
-        : '<path d="M8 5l11 7-11 7V5z"></path>';
+      iconPlay.textContent = playing ? "pause" : "play_arrow";
     }
     btnPlay.title = playing ? "Pause" : "Play";
+    if (liveLabel) {
+      liveLabel.classList.toggle("live-on", playing);
+    }
   }
 
   function setMuteUi(muted) {
     if (iconVolume) {
-      iconVolume.innerHTML = muted
-        ? '<path d="M4 9h4l5-4v14l-5-4H4V9z"></path><path d="M16 8l4 4m0-4l-4 4" stroke="#334155" stroke-width="2" stroke-linecap="round"></path>'
-        : '<path d="M4 9h4l5-4v14l-5-4H4V9zm12.5 3a4.5 4.5 0 0 0-2-3.7v7.4a4.5 4.5 0 0 0 2-3.7z"></path>';
+      iconVolume.textContent = muted ? "volume_off" : "volume_up";
     }
     btnMute.title = muted ? "Unmute" : "Mute";
   }
@@ -82,14 +84,20 @@
     const stationName = state?.stationName || "Minkes Radio";
     document.title = stationName;
 
-    if (listenerCount) listenerCount.textContent = state?.listenersText || "60 Listener";
-    if (topicText) topicText.textContent = state?.topicText || "Topics: UHC";
-
+    if (listenerCount)
+      listenerCount.textContent = state?.listenersText || "60 Listener";
+    if (listenerUpdated && listenerUpdated.textContent.trim() === "") {
+      listenerUpdated.textContent = "Terakhir update --.-- WIB";
+    }
     const posterUrl = state?.posterUrl;
     if (posterUrl) poster.src = posterUrl;
 
     const hasStream = Boolean(state?.streamUrl);
-    setHint(hasStream ? "Tap play untuk mulai mendengar." : "Setel URL stream untuk mulai memutar.");
+    setHint(
+      hasStream
+        ? "Tap play untuk mulai mendengar."
+        : "Setel URL stream untuk mulai memutar."
+    );
   }
 
   async function togglePlay() {
@@ -104,12 +112,16 @@
 
     try {
       if (audio.paused) {
+        setPlayUi(true);
         await audio.play();
       } else {
+        setPlayUi(false);
         audio.pause();
       }
     } catch (e) {
-      setHint("Gagal memutar. Pastikan Stream URL valid dan mendukung CORS/HTTPS.");
+      setHint(
+        "Gagal memutar. Pastikan Stream URL valid dan mendukung CORS/HTTPS."
+      );
       setPlayUi(false);
       stopFakeProgress();
     }
@@ -128,8 +140,10 @@
     btnShare.addEventListener("click", async () => {
       const payload = {
         title: document.title,
-        text: state?.programTitle ? `${state.programTitle} - ${state.stationName || "Minkes Radio"}` : document.title,
-        url: window.location.href
+        text: state?.programTitle
+          ? `${state.programTitle} - ${state.stationName || "Minkes Radio"}`
+          : document.title,
+        url: window.location.href,
       };
       try {
         if (navigator.share) {
@@ -163,6 +177,78 @@
     setHint("Tidak bisa memuat stream. Cek URL dan koneksi.");
   });
 
+  function formatListenerText(count) {
+    return `${count} Listener`;
+  }
+
+  function formatUpdatedTime(iso) {
+    if (!iso) return "Terakhir update --.-- WIB";
+    const date = new Date(iso);
+    const time = date.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return `Terakhir update ${time} WIB`;
+  }
+
+  function updateListenerUi(count, updatedAt) {
+    if (listenerCount) listenerCount.textContent = formatListenerText(count);
+    if (listenerUpdated)
+      listenerUpdated.textContent = formatUpdatedTime(updatedAt);
+  }
+
+  async function fetchListenerOnce() {
+    try {
+      const res = await fetch("/api/listeners", { cache: "no-store" });
+      if (!res.ok) throw new Error("listener fetch failed");
+      const data = await res.json();
+      if (typeof data?.count === "number") {
+        updateListenerUi(data.count, data.updatedAt);
+      }
+    } catch {
+      // ignore: fallback keeps last known value
+    }
+  }
+
+  function stopLivePolling() {
+    if (livePollTimer) window.clearInterval(livePollTimer);
+    livePollTimer = null;
+  }
+
+  function startLivePolling() {
+    stopLivePolling();
+    fetchListenerOnce();
+    livePollTimer = window.setInterval(fetchListenerOnce, 8000);
+  }
+
+  function stopLiveSource() {
+    if (liveSource) liveSource.close();
+    liveSource = null;
+  }
+
+  function startLiveListeners() {
+    if ("EventSource" in window) {
+      stopLiveSource();
+      liveSource = new EventSource("/api/live-listeners");
+      liveSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (typeof data?.count === "number") {
+            updateListenerUi(data.count, data.updatedAt);
+          }
+        } catch {
+          // ignore malformed payload
+        }
+      };
+      liveSource.onerror = () => {
+        stopLiveSource();
+        startLivePolling();
+      };
+    } else {
+      startLivePolling();
+    }
+  }
+
   function setActiveTab(tab) {
     const isSalam = tab === "salam";
     if (formMain) formMain.classList.remove("hidden");
@@ -188,10 +274,12 @@
   }
 
   if (tabSalam) tabSalam.addEventListener("click", () => setActiveTab("salam"));
-  if (tabRequest) tabRequest.addEventListener("click", () => setActiveTab("request"));
+  if (tabRequest)
+    tabRequest.addEventListener("click", () => setActiveTab("request"));
 
   setPlayUi(false);
   setMuteUi(false);
   setActiveTab("salam");
   renderState();
+  startLiveListeners();
 })();

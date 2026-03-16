@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="assets/styles/hero.css" />
     <link rel="stylesheet" href="assets/styles/form.css" />
     <link rel="stylesheet" href="assets/styles/responsive.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="page">
     <main class="container">
@@ -44,19 +48,19 @@
               id="poster"
               alt="Poster"
               class="poster"
-              src="assets/images/poster.png"
+              src="assets/images/poster.jpeg"
             />
           </div>
 
           <div class="side-stack">
             <div class="panel">
-              <div class="section-label">Live Broadcast</div>
+              <div id="liveLabel" class="section-label">Live Broadcast</div>
               <div class="section-body">
                 <div class="stat">
                   <span id="listenerCount">60 Listener</span>
                 </div>
-                <div class="stat-sub">
-                  <span id="topicText">Topics: UHC</span>
+                <div id="listenerUpdated" class="stat-sub">
+                  Terakhir update --.-- WIB
                 </div>
               </div>
 
@@ -68,17 +72,11 @@
                   aria-label="mute"
                   title="Mute"
                 >
-                  <svg
+                  <span
                     id="iconVolume"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+                    class="material-symbols-rounded icon-symbol"
+                    >volume_up</span
                   >
-                    <path
-                      d="M4 9h4l5-4v14l-5-4H4V9zm12.5 3a4.5 4.5 0 0 0-2-3.7v7.4a4.5 4.5 0 0 0 2-3.7z"
-                    ></path>
-                  </svg>
                 </button>
 
                 <button
@@ -88,15 +86,11 @@
                   aria-label="play pause"
                   title="Play/Pause"
                 >
-                  <svg
+                  <span
                     id="iconPlay"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+                    class="material-symbols-rounded icon-symbol icon-symbol-lg"
+                    >play_arrow</span
                   >
-                    <path d="M8 5l11 7-11 7V5z"></path>
-                  </svg>
                 </button>
 
                 <button
@@ -106,16 +100,11 @@
                   aria-label="share"
                   title="Share"
                 >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+                  <span
+                    id="iconShare"
+                    class="material-symbols-rounded icon-symbol"
+                    >share</span
                   >
-                    <path
-                      d="M18 16a3 3 0 0 0-2.2 1l-7.3-4.2a3.1 3.1 0 0 0 0-1.6l7.3-4.2A3 3 0 1 0 14 5a3 3 0 0 0 .1.7L6.8 10a3 3 0 1 0 0 4l7.3 4.3A3 3 0 1 0 18 16z"
-                    ></path>
-                  </svg>
                 </button>
               </div>
 
@@ -152,7 +141,11 @@
               <form id="formMain" class="form-stack">
                 <input id="fieldName" class="form-input" placeholder="Nama" />
                 <input id="fieldSecond" class="form-input" placeholder="Asal" />
-                <input id="fieldMessage" class="form-input" placeholder="Titip Salam" />
+                <input
+                  id="fieldMessage"
+                  class="form-input"
+                  placeholder="Titip Salam"
+                />
                 <button class="btn-primary">Kirim</button>
               </form>
             </div>
@@ -167,3 +160,6 @@
     <script src="assets/app.js"></script>
   </body>
 </html>
+
+
+
