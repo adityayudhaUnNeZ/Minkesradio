@@ -26,9 +26,9 @@
     programTitle: "On Air",
     hosts: ["Isul", "Laily"],
     scheduleText: "Rabu, 4 Februari 2026 10.00-11.00 WIB",
-    listenersText: "60 Listener",
+    listenersText: "",
     topicText: "Topics: UHC",
-    streamUrl: "http://172.17.10.92:8000/radio",
+    streamUrl: "http://192.168.137.76:8000/radio",
     posterUrl: "assets/images/poster.jpeg",
     links: {
       youtube: "https://www.youtube.com/@dinkessemarangkota",
@@ -85,7 +85,7 @@
     document.title = stationName;
 
     if (listenerCount)
-      listenerCount.textContent = state?.listenersText || "60 Listener";
+      listenerCount.textContent = state?.listenersText || "Memuat...";
     if (listenerUpdated && listenerUpdated.textContent.trim() === "") {
       listenerUpdated.textContent = "Terakhir update --.-- WIB";
     }
