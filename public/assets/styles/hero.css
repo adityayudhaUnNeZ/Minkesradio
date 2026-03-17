@@ -126,3 +126,120 @@
   }
 }
 
+
+.radio-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: radial-gradient(120% 120% at 15% 10%, rgba(255, 255, 255, 0.95), rgba(236, 234, 255, 0.7)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.65));
+  box-shadow: 0 18px 40px rgba(76, 29, 149, 0.08);
+  padding: 22px 22px 26px;
+}
+
+.radio-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.radio-panel .section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.18), rgba(20, 184, 166, 0.45));
+  color: #0f766e;
+  letter-spacing: 0.08em;
+}
+
+.radio-panel .section-body {
+  border-top: none;
+  padding-top: 8px;
+}
+
+.radio-panel .stat {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.radio-panel .stat-sub {
+  font-size: 14px;
+  color: #0f766e;
+}
+
+.radio-panel .controls {
+  margin-top: 22px;
+  gap: 18px;
+}
+
+.radio-panel .icon-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  background: rgba(20, 184, 166, 0.15);
+  color: #0f766e;
+  box-shadow: 0 10px 20px rgba(20, 184, 166, 0.2);
+}
+
+.radio-panel .play-btn {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #f9a8d4, #ec4899 60%);
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(236, 72, 153, 0.35);
+}
+
+.radio-panel .progress-track {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.radio-panel .progress-bar {
+  background: linear-gradient(90deg, #14b8a6, #ec4899);
+}
+
+.radio-panel .hint {
+  color: #9f1239;
+}
+
+.wave-line {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 20px;
+  height: 80px;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.wave-line svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wave-path {
+  fill: none;
+  stroke: url(#waveGradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 8 14;
+  stroke-dashoffset: 0;
+}
+
+.wave-path-glow {
+  stroke-width: 16;
+  opacity: 0.25;
+  filter: blur(6px);
+}
+
+.radio-panel.wave-active .wave-path {
+  animation: waveFlow 2.8s linear infinite;
+}
+
+@keyframes waveFlow {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
+

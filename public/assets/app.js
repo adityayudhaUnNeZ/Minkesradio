@@ -23,6 +23,7 @@
   const fieldMessage = $("fieldMessage");
   const hint = $("hint");
   const soundwave = $("soundwave");
+  const radioPanel = $("radioPanel");
 
   const state = {
     stationName: "Minkes Radio",
@@ -32,7 +33,7 @@
     scheduleText: "Rabu, 4 Februari 2026 10.00-11.00 WIB",
     listenersText: "",
     topicText: "Topics: UHC",
-    streamUrl: "http://172.17.10.206:8000/radio",
+    streamUrl: "http://172.16.10.187:8000/radio",
     posterUrl: "assets/images/poster.jpeg",
     links: {
       youtube: "https://www.youtube.com/@dinkessemarangkota",
@@ -61,6 +62,9 @@
     }
     if (soundwave) {
       soundwave.classList.toggle("wave-active", playing);
+      if (radioPanel) {
+        radioPanel.classList.toggle("wave-active", playing);
+      }
     }
   }
 
@@ -300,4 +304,3 @@
   renderState();
   startLiveListeners();
 })();
-
