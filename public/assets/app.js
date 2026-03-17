@@ -12,6 +12,9 @@
   const listenerUpdated = $("listenerUpdated");
   const liveLabel = $("liveLabel");
   const btnShare = $("btnShare");
+  const linkInstagram = $("linkInstagram");
+  const linkTiktok = $("linkTiktok");
+  const linkYoutube = $("linkYoutube");
   const tabSalam = $("tabSalam");
   const tabRequest = $("tabRequest");
   const formMain = $("formMain");
@@ -19,6 +22,7 @@
   const fieldSecond = $("fieldSecond");
   const fieldMessage = $("fieldMessage");
   const hint = $("hint");
+  const soundwave = $("soundwave");
 
   const state = {
     stationName: "Minkes Radio",
@@ -28,7 +32,7 @@
     scheduleText: "Rabu, 4 Februari 2026 10.00-11.00 WIB",
     listenersText: "",
     topicText: "Topics: UHC",
-    streamUrl: "http://192.168.19.45:8000/radio",
+    streamUrl: "http://172.17.10.206:8000/radio",
     posterUrl: "assets/images/poster.jpeg",
     links: {
       youtube: "https://www.youtube.com/@dinkessemarangkota",
@@ -54,6 +58,9 @@
     btnPlay.title = playing ? "Pause" : "Play";
     if (liveLabel) {
       liveLabel.classList.toggle("live-on", playing);
+    }
+    if (soundwave) {
+      soundwave.classList.toggle("wave-active", playing);
     }
   }
 
@@ -81,6 +88,7 @@
   }
 
   function renderState() {
+    const links = state?.links || {};
     const stationName = state?.stationName || "Minkes Radio";
     document.title = stationName;
 
@@ -89,6 +97,9 @@
     if (listenerUpdated && listenerUpdated.textContent.trim() === "") {
       listenerUpdated.textContent = "Terakhir update --.-- WIB";
     }
+    if (linkInstagram && links.instagram) linkInstagram.href = links.instagram;
+    if (linkTiktok && links.tiktok) linkTiktok.href = links.tiktok;
+    if (linkYoutube && links.youtube) linkYoutube.href = links.youtube;
     const posterUrl = state?.posterUrl;
     if (posterUrl) poster.src = posterUrl;
 
@@ -251,7 +262,13 @@
 
   function setActiveTab(tab) {
     const isSalam = tab === "salam";
-    if (formMain) formMain.classList.remove("hidden");
+    if (formMain) {
+      formMain.classList.remove("hidden");
+      formMain.classList.add("form-switching");
+      window.setTimeout(() => {
+        formMain.classList.remove("form-switching");
+      }, 220);
+    }
 
     if (tabSalam) {
       tabSalam.classList.toggle("tab-pill-active", isSalam);
@@ -283,3 +300,4 @@
   renderState();
   startLiveListeners();
 })();
+
